@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    PathFinders
+
+    <form method="POST">
+        <input type="text" placeholder="Add User" name="user" required autofocus>
+        <input type="submit" value="Submit">
+    </form>
+    {% for user in users %}
+    <div class="user">
+        <p> {{ user["content"] }} </p>
+        <form method="POST" action="{{ url_for('views.delete', id=user['_id']) }}">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>
