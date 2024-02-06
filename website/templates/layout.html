@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PathFinders | {% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="../static/styles.css" type="text/css">
 </head>
-<body>
-    PathFinders
+    <body>
+        <!-- Dropdown Structure source: https://www.codingnepalweb.com/responsive-navigation-menu-bar-html-css/ -->
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+              <i class="fas fa-bars"></i>
+            </label>
+            <label class="logo">PathFinders</label>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/findamentor">Find A Mentor</a></li>
+              <li><a href="/findamentee">Find A Mentee</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </nav>
 
-    <form method="POST">
-        <input type="text" placeholder="Add User" name="user" required autofocus>
-        <input type="submit" value="Submit">
-    </form>
-    {% for user in users %}
-    <div class="user">
-        <p> {{ user["content"] }} </p>
-        <form method="POST" action="{{ url_for('views.delete', id=user['_id']) }}">
-            <input type="submit" value="Delete">
-        </form>
-    </div>
-    {% endfor %}
-</body>
+        <div class="maincontent">
+
+        </div>
+        {% block body %}
+        <p>
+            Home
+        </p>
+        {% endblock %}
+    </body>
 </html>

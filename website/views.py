@@ -21,3 +21,12 @@ def delete(id):
     if request.method == "POST":
         users.delete_one({"_id":ObjectId(id)})
         return redirect("/")
+    
+@views.route("/findamentor", methods=["GET", "POST"])
+def findamentor():
+    return render_template("findamentor.html")
+
+@views.route("/findamentee", methods=["GET", "POST"])
+def findamentee():
+    return render_template("findamentee.html")
+
