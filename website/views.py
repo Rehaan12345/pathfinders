@@ -30,3 +30,10 @@ def findamentor():
 def findamentee():
     return render_template("findamentee.html")
 
+@views.app_errorhandler(404)
+def handle_404(err):
+    return render_template("404.html"), 404
+
+@views.app_errorhandler(500)
+def handle_404(err):
+    return render_template("500.html"), 500

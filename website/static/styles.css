@@ -15,33 +15,34 @@ body {
 }
 
 /********** Navbar: (source: https://www.codingnepalweb.com/responsive-navigation-menu-bar-html-css/) **********/
-nav{
+.mainnav {
   background: var(--compliment2);
   height: 80px;
   width: 100%;
 }
-label.logo{
+label.logo {
   color: var(--background);
   font-size: 35px;
   line-height: 80px;
   padding: 0 100px;
   font-weight: bold;
 }
-nav ul{
+.mainnav ul {
   float: right;
   margin-right: 20px;
 }
-nav ul li{
+.mainnav ul li{
   display: inline-block;
   line-height: 80px;
   margin: 0 5px;
 }
-nav ul li a{
+.mainnav ul li a{
   color: var(--background);
   font-size: 17px;
   padding: 7px 13px;
   border-radius: 3px;
   text-transform: uppercase;
+  text-decoration: none;
 }
 a.active,a:hover{
   background: var(--compliment3);
@@ -64,7 +65,7 @@ a.active,a:hover{
     font-size: 30px;
     padding-left: 50px;
   }
-  nav ul li a{
+  .mainnav ul li a{
     font-size: 16px;
   }
 }
@@ -76,18 +77,18 @@ a.active,a:hover{
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: var(--compliment2);
+    background: var(--compliment3);
     top: 80px;
     left: -100%;
     text-align: center;
     transition: all .5s;
   }
-  nav ul li{
+  .mainnav ul li{
     display: block;
     margin: 50px 0;
     line-height: 30px;
   }
-  nav ul li a{
+  .mainnav ul li a{
     font-size: 20px;
   }
   a:hover,a.active{
@@ -103,4 +104,323 @@ section{
   background-color: var(--background);
   background-size: cover;
   height: calc(100vh - 80px);
+}
+
+/********* Login / Signup (source: https://www.codingnepalweb.com/login-form-validation-in-html-javascript/) **********/
+.wrapperwrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+::selection{
+  color: #fff;
+  background: var(--compliment2);
+}
+.wrapper{
+  width: 380px;
+  padding: 40px 30px 50px 30px;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 35px;
+  font-weight: 600;
+}
+.wrapper form{
+  margin: 40px 0;
+}
+.loginform .field{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.loginform .field.shake{
+  animation: shake 0.3s ease-in-out;
+}
+@keyframes shake {
+  0%, 100%{
+    margin-left: 0px;
+  }
+  20%, 80%{
+    margin-left: -12px;
+  }
+  40%, 60%{
+    margin-left: 12px;
+  }
+}
+.loginform .field .input-area{
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+.loginform input{
+  width: 75%;
+  height: 100%;
+  outline: none;
+  padding: 0 45px;
+  font-size: 18px;
+  background: none;
+  caret-color: var(--compliment2);
+  border-radius: 5px;
+  border: 1px solid #bfbfbf;
+  border-bottom-width: 2px;
+  transition: all 0.2s ease;
+}
+.loginform .field input:focus,
+.loginform .field.valid input{
+  border-color: var(--compliment3);
+}
+.loginform .field.shake input,
+.loginform .field.error input{
+  border-color: #dc3545;
+}
+.field .input-area i{
+  position: absolute;
+  top: 50%;
+  font-size: 18px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.input-area .icon{
+  left: 15px;
+  color: #bfbfbf;
+  transition: color 0.2s ease;
+}
+.input-area .error-icon{
+  right: 15px;
+  color: #dc3545;
+}
+.loginform input:focus ~ .icon,
+.loginform .field.valid .icon{
+  color: #5372F0;
+}
+.loginform .field.shake input:focus ~ .icon,
+.loginform .field.error input:focus ~ .icon{
+  color: #bfbfbf;
+}
+.loginform input::placeholder{
+  color: #bfbfbf;
+  font-size: 17px;
+}
+.loginform .field .error-txt{
+  color: #dc3545;
+  text-align: left;
+  margin-top: 5px;
+}
+.loginform .field .error{
+  display: none;
+}
+.loginform .field.shake .error,
+.loginform .field.error .error{
+  display: block;
+}
+.loginform .pass-txt{
+  text-align: left;
+  margin-top: -10px;
+}
+.wrapper a{
+  color: var(--compliment1);
+  text-decoration: none;
+}
+.wrapper a:hover{
+  text-decoration: underline;
+}
+.loginform input[type="submit"]{
+  height: 50px;
+  margin-top: 30px;
+  color: #fff;
+  padding: 0;
+  border: none;
+  background: var(--compliment1);
+  cursor: pointer;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.loginform input[type="submit"]:hover{
+  background: var(--compliment3);
+}
+
+/********** Multi-step signin form (source: https://formbold.com/templates/multi-step-form)  */
+.multistepwrapperwrapper {
+  box-sizing: border-box;
+}
+
+.formbold-main-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+}
+
+.formbold-form-wrapper {
+  margin: 0 auto;
+  max-width: 550px;
+  width: 100%;
+  background: white;
+}
+
+.formbold-steps {
+  padding-bottom: 18px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid #DDE3EC;
+}
+.formbold-steps ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+.formbold-steps li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+}
+.formbold-steps li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #DDE3EC;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+}
+.formbold-steps li.active {
+  color: #07074D;;
+}
+.formbold-steps li.active span {
+  background: #6A64F1;
+  color: #FFFFFF;
+}
+
+.formbold-input-flex {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.formbold-input-flex > div {
+  width: 50%;
+}
+.formbold-form-input {
+  width: 100%;
+  padding: 13px 22px;
+  border-radius: 5px;
+  border: 1px solid #DDE3EC;
+  background: #FFFFFF;
+  font-weight: 500;
+  font-size: 16px;
+  color: #536387;
+  outline: none;
+  resize: none;
+}
+.formbold-form-input:focus {
+  border-color: #6a64f1;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+.formbold-form-label {
+  color: #07074D;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.formbold-form-confirm {
+  border-bottom: 1px solid #DDE3EC;
+  padding-bottom: 35px;
+}
+.formbold-form-confirm p {
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+  margin-bottom: 22px;
+  width: 75%;
+}
+.formbold-form-confirm > div {
+  display: flex;
+  gap: 15px;
+}
+
+.formbold-confirm-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 0.5px solid #DDE3EC;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #536387;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: all .3s ease-in-out;
+}
+.formbold-confirm-btn {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+}
+.formbold-confirm-btn.active {
+  background: #6A64F1;
+  color: #FFFFFF;
+}
+
+.formbold-form-step-1,
+.formbold-form-step-2,
+.formbold-form-step-3 {
+  display: none;
+}
+.formbold-form-step-1.active,
+.formbold-form-step-2.active,
+.formbold-form-step-3.active {
+  display: block;
+}
+
+.formbold-form-btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+  margin-top: 25px;
+}
+.formbold-back-btn {
+  cursor: pointer;
+  background: #FFFFFF;
+  border: none;
+  color: #07074D;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  display: none;
+}
+.formbold-back-btn.active {
+  display: block;
+}
+.formbold-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  padding: 10px 25px;
+  border: none;
+  font-weight: 500;
+  background-color: #6A64F1;
+  color: white;
+  cursor: pointer;
+}
+.formbold-btn:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
 }
