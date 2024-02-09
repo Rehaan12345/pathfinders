@@ -105,7 +105,9 @@ document.addEventListener("DOMContentLoaded", ()=> {
         stepThree.classList.add('active')
     
         formBackBtn.classList.remove('active')
-        formSubmitBtn.textContent = 'Submit'
+        formSubmitBtn.remove("active")
+        const finalSubmit = document.querySelector("#submitter")
+        finalSubmit.classList.add("active")
         } else if(stepMenuThree.className == 'formbold-step-menu3 active') {
         document.querySelector('form').submit()
         }

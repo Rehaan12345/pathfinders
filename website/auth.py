@@ -13,6 +13,10 @@ def login():
 def logout():
     return render_template("logout.html")
 
-@auth.route("/signup")
+@auth.route("/signup", methods=["GET", "POST"])
 def signup():
+    if request.method == "POST":
+        print("19 - found")
+        return redirect("/signup")
+
     return render_template("signup.html")
