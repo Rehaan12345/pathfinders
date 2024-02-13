@@ -1,7 +1,8 @@
 /********** Nav Bar **********/
 window.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("DOMContentLoaded", () => {
-        const activePage = window.location.pathname;
+        const activePage = window.location.href;
+        console.log(activePage);
         document.querySelectorAll(".navlink").forEach((link) => {
             if (link.href === window.location.href) {
                 link.classList.add("active");
