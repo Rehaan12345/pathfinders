@@ -4,6 +4,7 @@
     --compliment2: #b9650bff; 
     --compliment3: #bd9b19ff; 
     --compliment4: #254215ff;
+    --font: "Arial, Helvetica, sans-serif";
 }
 
 * {
@@ -13,6 +14,7 @@
 
 body {
     background-color: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /********** Navbar: (source: https://www.codingnepalweb.com/responsive-navigation-menu-bar-html-css/) **********/
@@ -261,40 +263,41 @@ section{
   padding: 48px;
 }
 
-.formbold-form-wrapper {
+.infowrapper {
   margin: 0 auto;
   max-width: 550px;
   width: 100%;
   background: white;
   padding: 20px;
+  height: 100%;
 }
 
-.formbold-steps {
+.stepmenu {
   padding-bottom: 18px;
   margin-bottom: 35px;
-  border-bottom: 1px solid #DDE3EC;
+  border-bottom: 1px solid var(--compliment4);
 }
-.formbold-steps ul {
+.stepmenu ul {
   padding: 0;
   margin: 0;
   list-style: none;
   display: flex;
   gap: 40px;
 }
-.formbold-steps li {
+.stepmenu li {
   display: flex;
   align-items: center;
   gap: 14px;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #536387;
+  color: grey;
 }
-.formbold-steps li span {
+.stepmenu li span {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #DDE3EC;
+  background: var(--background);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -303,11 +306,11 @@ section{
   line-height: 24px;
   color: #536387;
 }
-.formbold-steps li.active {
-  color: #07074D;;
+.stepmenu li.active {
+  color: var(--compliment4);
 }
-.formbold-steps li.active span {
-  background: #6A64F1;
+.stepmenu li.active span {
+  background: var(--compliment2);
   color: #FFFFFF;
 }
 
@@ -327,16 +330,16 @@ section{
   background: #FFFFFF;
   font-weight: 500;
   font-size: 16px;
-  color: #536387;
+  color: var(--compliment4);
   outline: none;
   resize: none;
 }
 .formbold-form-input:focus {
-  border-color: #6a64f1;
+  border-color: black;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
 }
 .formbold-form-label {
-  color: #07074D;
+  color: black;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -378,7 +381,7 @@ section{
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
 }
 .formbold-confirm-btn.active {
-  background: #6A64F1;
+  background: var(--compliment2);
   color: #FFFFFF;
 }
 
@@ -404,16 +407,18 @@ section{
   cursor: pointer;
   background: #FFFFFF;
   border: none;
-  color: #07074D;
+  color: black;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   display: none;
 }
+
 .formbold-back-btn.active {
   display: block;
 }
-.formbold-btn {
+
+.nextstep {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -422,46 +427,306 @@ section{
   padding: 10px 25px;
   border: none;
   font-weight: 500;
-  background-color: #6A64F1;
+  background-color: var(--compliment2);
   color: white;
   cursor: pointer;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+.nextstep:hover {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, .3);
+}
+
 #submitter {
   display: none;
 }
 #submitter.active {
   display: block;
 }
-.formbold-btn:hover {
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-}
 
-.colorwrapper {
+.mainselector {
+  /* border: 1px solid green; */
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
 }
 
-.c1 {
+.buttonwrapper {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.selectoritem {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  /* border: 1px solid blue; */
+  width: 100%;
+  height: 20%;
+}
+
+/* .selectortitlewrapper { */
+  /* border: 1px solid purple; */
+/* } */
+
+.selectortitle {
+  font-size: large;
+  padding: 15px;
+  padding-left: 0;
+}
+
+.buttonlabel {
+  /* border: 1px solid green; */
+  font-weight: bold;
+  padding: 2px;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.buttonlabel input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--compliment4);
+}
+
+#radiocheck {
+  border-radius: 50%;
+}
+
+.buttonlabel:hover input ~ .checkmark {
+  background-color: var(--compliment3);
+}
+
+.buttonlabel input:checked ~ .checkmark {
+  background-color: var(--compliment3);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.buttonlabel input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.buttonlabel .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#inputother {
+  border: 1.5px solid var(--compliment4);
+  border-radius: 3px;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.inputother:focus {
+  border-color: var(--compliment1);
+}
+
+/***** Confirm signup stages styling: *****/
+.confirmbody {
+  /* border: 1px solid green; */
+  /* height: 100vh; */
+}
+
+.confirmtext {
+  display: flex;
+  /* border: 1px solid black; */
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.confirmanschoi {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  border-bottom: 1px dashed black;
+  flex-wrap: wrap;
+}
+
+.confirmcat {
+  /* border: 1px solid blue; */
+}
+
+.confirmchoice {
+  /* border: 1px solid pink; */
+}
+
+/********** Main page styling: **********/
+.maincontainer {
+  display: flex;
+  border: 1px solid black;
+  width: 100%;
   height: 100%;
-  width: 25%;
+}
+
+.hometitle {
+  border: 1px solid green;
+}
+
+/********* Find Mentor Styling **********/
+.findmentorbody {
+  border: 1px solid black;
+  background-color: white;
+}
+
+.findmentorcontainer {
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #232427; */
   background-color: var(--background);
-}
-.c2 {
-  height: 100%;
-  width: 25%;
-  background-color: var(--compliment1);
-}
-.c3 {
-  height: 100%;
-  width: 25%;
-  background-color: var(--compliment2);
-}
-.c4 {
-  height: 100%;
-  width: 25%;
-  background-color: var(--compliment3);
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+} 
+
+/* Source / insporation: https://codepen.io/saviomartin/pen/LYNgqKW */
+.mentorcardscontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 40px 0;
 }
 
-input:checked {
-  background-color: var(--compliment3);
+.mentorcardscontainer .mentorcard {
+  position: relative;
+  min-width: 320px;
+  height: 440px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  margin: 30px;
+  transition: 0.5s;
+}
+
+.mentorcardscontainer .mentorcard:nth-child(1) .box .content a {
+  background: #2196f3;
+}
+
+.container .mentorcard:nth-child(2) .box .content a {
+  background: #e91e63;
+}
+
+.mentorcardscontainer .mentorcard:nth-child(3) .box .content a {
+  background: #23c186;
+}
+
+.mentorcardscontainer .mentorcard .box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: var(--compliment1);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.mentorcardscontainer .mentorcard .box:hover {
+  transform: translateY(-50px);
+}
+
+.mentorcardscontainer .mentorcard .box:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.mentorcardscontainer .mentorcard .box .content {
+  padding: 20px;
+  text-align: center;
+}
+
+.mentorcardscontainer .mentorcard .box .content h2 {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 8rem;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.mentorcardscontainer .mentorcard .box .content h3 {
+  font-size: 1.8rem;
+  color: #fff;
+  z-index: 1;
+  transition: 0.5s;
+  margin-bottom: 15px;
+}
+
+.mentorcardscontainer .mentorcard .box .content p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.mentorcardscontainer .mentorcard .box .content a {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: black;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  margin-top: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.mentorcardscontainer .mentorcard .box .content a:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  background: #fff;
+  color: #000;
 }

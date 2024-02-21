@@ -21,19 +21,30 @@
             <ul>
               <li><a href="/" class="navlink">Home</a></li>
               <li><a href="/findamentor" class="navlink">Find A Mentor</a></li>
-              <li><a href="/findamentee" class="navlink">Find A Mentee</a></li>
-              <li><a href="/logout" class="navlink">Logout</a></li>
-              <li><a href="/login" class="navlink">Login</a></li>
-              <li><a href="/signup" class="navlink">Signup</a></li>
+              <!-- <li><a href="/findamentee" class="navlink">Find A Mentee</a></li> -->
+              <li><a href="/logout" class="navlink">Log Out</a></li>
+              <li><a href="/login" class="navlink">Log In</a></li>
+              <li><a href="/signup/basicinfo" class="navlink">Sign up</a></li>
             </ul>
           </nav>
 
-        <div class="maincontent">
-
-        </div>
         {% block body %}
-        <div class="container">
-          hello
+        <div class="maincontainer">
+          <div class="hometitle">CRLS PathFinders</div>
+          <div class="homesepdiv">
+            <div class="sepcontainer" id="whowearecontainer">
+              <div class="subheadtitle" id="whoarewetitle">Who are we?</div>
+              <div class="subsubcontent" id="whoarewecontent">
+
+              </div>
+            </div>
+            <div class="sepcontainer" id="howarewediffcontainer">
+              <div class="subheadtitle" id="howarewedifftitle">How are different?</div>
+              <div class="subsubcontent" id="whoarewecontent">
+
+              </div>
+            </div>
+          </div>
         </div>
         {% endblock %}
     </body>

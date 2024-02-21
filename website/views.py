@@ -24,7 +24,7 @@ def delete(id):
     
 @views.route("/findamentor", methods=["GET", "POST"])
 def findamentor():
-    return render_template("findamentor.html")
+    return render_template("findamentor.html", mentors=users.find())
 
 @views.route("/findamentee", methods=["GET", "POST"])
 def findamentee():
