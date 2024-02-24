@@ -8,7 +8,7 @@
     {% if step == "basicinfo" %}
 
     <div class="infowrapper">
-        <form action="{{ url_for('auth.signup', step='morespecific') }}" class="basicinfoform" method="POST">
+        <form action="{{ url_for('auth.signup', step='morespecific') }}" class="signupform" method="POST">
             <div class="stepmenu">
                 <ul>
                     <li class="formbold-step-menu1 active">
@@ -108,7 +108,7 @@
     {% elif step == "morespecific" %}
 
     <div class="infowrapper">
-        <form action="{{ url_for('auth.signup', step='confirm') }}" class="morespecificform" method="POST">
+        <form action="{{ url_for('auth.signup', step='confirm') }}" class="signupform" method="POST">
 
             <div class="stepmenu">
                 <ul>
@@ -365,7 +365,7 @@
     </div>
       <div class="steptitle">Confirm Your Information</div>
       <div class="confirmbody">
-        <form action="{{ url_for('auth.signup', step='finish') }}" class="confirmform" method="POST">
+        <form action="{{ url_for('auth.signup', step='finish') }}" class="signupform" method="POST">
           <div class="confirmtext">
             <div class="confirmanschoi">
               <div class="confirmcat">

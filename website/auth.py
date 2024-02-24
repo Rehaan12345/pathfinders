@@ -1,34 +1,15 @@
-from flask import Flask, render_template, url_for, redirect, request, Blueprint
+from flask import Flask, render_template, url_for, redirect, request, Blueprint, flash
 from pymongo import MongoClient, UpdateOne
 from bson.objectid import ObjectId
 from .models import users
-
+from .models import User, combining
+from flask_login import login_user, login_required, logout_user, current_user
+ 
 auth = Blueprint("auth", __name__)
 
-# Combines a 
-def combining(str):
-        final_str = ""
-        if len(str) == 1:
-            final_str = str[0]
-        # elif len(str) == 2: 
-        #     final_str += str[0] + " and " + str[1]
-        else:
-            for i in range(len(str)):
-                if i == len(str) - 2:
-                    final_str += str[len(str) - 2] + " and " + str[len(str) - 1]
-                    break
-                final_str += str[i] + " "
-            ind_and = final_str.index("and")
-            final_str = final_str[:ind_and]
-        return final_str
-
-@auth.route("/login")
-def login():
-    return render_template("login.html")
-
-@auth.route("/logout/<id>")
-def logout(id):
-    return render_template("logout.html")
+@auth.route("/user", methods=["GET", "POST"])
+def signupp():
+    return User().signup()
 
 @auth.route("/signup/<step>", methods=["GET", "POST"])
 def signup(step):
@@ -94,35 +75,16 @@ def signup(step):
             print(f"firstname - {first_name}, lastname - {last_name}, dob - {date_of_birth}, email - {email}, mentormentee - {mentormentee}, race - {race}, religion - {religion}, gender - {gender}, languages - {languages}, academics - {academics}")
             # users.insert_one({"firstname": first_name, "lastname": last_name, "dob": date_of_birth, "email": email, "mentormentee": mentormentee, "race": race, "religion": religion, "gender": gender, "languages": languages, "academics": academics})
             print("66 - successfully confirmed")
+            flash("Account successfully created")
             return render_template("signup.html", step="finish")
                 
     return render_template("signup.html", step="basicinfo")
 
-def update_first(first_name, last_name, date_of_birth, email):
-    first_name = ""
-    last_name = ""
-    date_of_birth = ""
-    email = ""
-    mentormentee = ""
-    race = ""
-    religion = ""
-    gender = ""
-    languages = ""
-    academics = ""
+@auth.route("/login")
+def login():
+    return render_template("login.html")
 
-    first_name = first_name
-    last_name = last_name
-    date_of_birth = date_of_birth
-    email = email
-    mentormentee = mentormentee
-    race = race
-    religion = religion
-    gender = gender
-    languages = languages
-    academics = academics
-
-    users.insert_one({"firstname": first_name, "lastname": last_name, "dob": date_of_birth, "email": email, "mentormentee": mentormentee, "race": race, "religion": religion, "gender": gender, "languages": languages, "academics": academics})
-
-def update_second(first_name, last_name, date_of_birth, email, mentormentee, race, religion, gender, languages, academics):
-    print("ok")
+@auth.route("/logout/<id>")
+def logout(id):
+    return render_template("logout.html")
     
