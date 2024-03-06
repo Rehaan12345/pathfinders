@@ -1,5 +1,5 @@
-from . import db
 from flask import Flask, jsonify, request
+from flask_login import UserMixin
 
 def combining(str):
         final_str = ""
@@ -18,24 +18,32 @@ def combining(str):
         return final_str
 
 # Users collection
-users = db.users
+# users = db.users
 
-class User:
+class User(UserMixin): # Source: https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
+    def __init__(self, user_json):
+        self.user_json = user_json
 
-    def signup(self):
+    def get_id(self):
+        object_id = self.user_json.get("_id")
+        return str(object_id)
 
-        user = {
-            "_id": "",
-            "firstname": request.form.get("firstname"), 
-            "lastname": request.form.get("lastname"),
-            "dob": request.form.get("dob"), 
-            "email": request.form.get("email"),
-            "mentormentee": request.form.get("mentormentee"),
-            "race": combining(request.form.getlist("race")),
-            "religion": combining(request.form.getlist("religion")), 
-            "gender": request.form.get("gender"),
-            "languages": combining(request.form.getlist("languages")),
-            "academics": combining(request.form.getlist("academics"))
-        }
+# class User: # Source: https://www.youtube.com/watch?v=mISFEwojJmE&t=661s 
 
-        return jsonify(user), 200
+#     def signup(self):
+
+#         user = {
+#             "_id": "",
+#             "firstname": request.form.get("firstname"), 
+#             "lastname": request.form.get("lastname"),
+#             "dob": request.form.get("dob"), 
+#             "email": request.form.get("email"),
+#             "mentormentee": request.form.get("mentormentee"),
+#             "race": combining(request.form.getlist("race")),
+#             "religion": combining(request.form.getlist("religion")), 
+#             "gender": request.form.get("gender"),
+#             "languages": combining(request.form.getlist("languages")),
+#             "academics": combining(request.form.getlist("academics"))
+#         }
+
+#         return jsonify(user), 200

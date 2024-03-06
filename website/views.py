@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, Blueprint
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-from .models import users
+from . import users
 
 views = Blueprint("views", __name__)
 
