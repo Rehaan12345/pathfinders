@@ -567,10 +567,6 @@ section{
 }
 
 /***** Confirm signup stages styling: *****/
-.confirmbody {
-  /* border: 1px solid green; */
-  /* height: 100vh; */
-}
 
 .confirmtext {
   display: flex;
@@ -586,14 +582,6 @@ section{
   /* border: 1px solid red; */
   border-bottom: 1px dashed black;
   flex-wrap: wrap;
-}
-
-.confirmcat {
-  /* border: 1px solid blue; */
-}
-
-.confirmchoice {
-  /* border: 1px solid pink; */
 }
 
 /********** Main page styling: **********/

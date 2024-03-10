@@ -39,28 +39,28 @@
               </div>
             </div>
             <div class="formbold-input-flex">
-                <div>
+                <!-- <div>
                   {{ form.dob.label(class="formbold-form-label") }} 
                   {{ form.dob(class="formbold-form-input") }}
-                </div>
+                </div> -->
                 <div>
                   {{ form.email.label(class="formbold-form-label") }} 
                   {{ form.email(class="formbold-form-input") }}
                 </div>
+                <div>
+                    {{ form.password.label(class="formbold-form-label") }} 
+                    {{ form.password(class="formbold-form-input") }}
+                </div>
             </div>
-            <div class="formbold-input-flex">
-              <div>
-                  {{ form.password.label(class="formbold-form-label") }} 
-                  {{ form.password(class="formbold-form-input") }}
-              </div>
+            <!-- <div class="formbold-input-flex"> -->
               <div>
                   {{ form.confirmpassword.label(class="formbold-form-label") }} 
                   {{ form.confirmpassword(class="formbold-form-input") }}
               </div>
-
-            </div>
+            <!-- </div> -->
             <!-- Add a confirmation password div here and wrap both divs in the same flex div as above. -->
-            <button class="nextstep" type="submit">Next Step</button>
+            <!-- <button class="nextstep" type="submit">Next Step</button> -->
+            {{ form.submit(class="nextstep") }}
       </form>
   </div>
 
@@ -184,7 +184,7 @@
                     </div>
                 </ul>
           </div>
-          <button class="nextstep" type="submit">Next Step</button>
+          {{ form.submit(class="nextstep") }}
       </form>
   </div>
 
@@ -261,7 +261,7 @@
           </div>
         </div>
         <div class="controlbutton">
-          <button class="nextstep" type="submit" id="confirmfinish">Confirm</button>
+          {{ form.submit(class="nextstep") }}
           <button class="nextstep goback" type="submit" id="goback"><a href="/signup/morespecific">Back</a></button>
         </div>
         

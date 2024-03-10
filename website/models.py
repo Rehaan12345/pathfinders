@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
 def combining(str):
         final_str = ""
@@ -14,7 +15,7 @@ def combining(str):
                     break
                 final_str += str[i] + " "
             ind_and = final_str.index("and")
-            final_str = final_str[:ind_and]
+            # final_str = final_str[:ind_and]
         return final_str
 
 # Users collection
@@ -27,6 +28,26 @@ class User(UserMixin): # Source: https://stackoverflow.com/questions/53401996/at
     def get_id(self):
         object_id = self.user_json.get("_id")
         return str(object_id)
+    
+    # Source for rest of the methods: https://stackoverflow.com/questions/54992412/flask-login-usermixin-class-with-a-mongodb 
+    # @staticmethod
+    def is_authenticated():
+        return True
+
+    # @staticmethod
+    def is_active():
+        return True
+
+    # @staticmethod
+    def is_anonymous():
+        return False
+
+    def get_id(self):
+        return self.username
+
+    # @staticmethod
+    def check_password(password_hash, password):
+        return check_password_hash(password_hash, password)
 
 # class User: # Source: https://www.youtube.com/watch?v=mISFEwojJmE&t=661s 
 

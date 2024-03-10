@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, redirect, request, Blueprint
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from . import users
+from flask_login import current_user, login_user
 
 views = Blueprint("views", __name__)
 
@@ -24,7 +25,7 @@ def delete(id):
     
 @views.route("/findamentor", methods=["GET", "POST"])
 def findamentor():
-    return render_template("findamentor.html", mentors=users.find())
+    return render_template("findamentor.html", mentors=users.find(), user=current_user)
 
 @views.route("/findamentee", methods=["GET", "POST"])
 def findamentee():

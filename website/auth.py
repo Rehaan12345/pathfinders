@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 from .models import User, combining
 from . import users
 from flask_login import login_user, login_required, logout_user, current_user
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 
 auth = Blueprint("auth", __name__)
 
@@ -14,7 +14,6 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/signup/<step>", methods=["GET", "POST"])
 def signup(step):
-
     form = SignupForm()
 
     # Default values:
@@ -30,34 +29,34 @@ def signup(step):
     academics = ""
 
     if step == "basicinfo":
-        if request.method == "POST":
-            return render_template("signup.html", step="basicinfo", form=form) 
+        if form.validate_on_submit:
+            return render_template("signup.html", step="basicinfo", form=form)
     
     elif step == "morespecific":
-        if request.method == "POST":
-            first_name = request.form.get("firstname")
-            last_name = request.form.get("lastname")
-            date_of_birth = request.form.get("dob")
-            email = request.form.get("email")
-            password = request.form.get("password")
-            confirmpassword = request.form.get("confirmpassword")
+        if form.validate_on_submit:
+            first_name = form.firstname.data
+            last_name = form.lastname.data
+            # date_of_birth = form.dob.data
+            email = form.email.data
+            password = form.password.data
+            confirmpassword = form.confirmpassword.data
             if password != confirmpassword:
-                #flash
+                flash("Passwords don't match!", "error")
                 return redirect("/signup/basicinfo")
-            print(f"firstname - {first_name} lastname - {last_name} dateofbirth - {date_of_birth} email - {email} password - {password}")
+            print(f"firstname - {first_name} lastname - {last_name} email - {email} password - {password}")
             # Creates the user the first time.
-            users.insert_one({"firstname": first_name, "lastname": last_name, "dob": date_of_birth, "email": email, "mentormentee": mentormentee, "password": password, "race": race, "religion": religion, "gender": gender, "languages": languages, "academics": academics})
+            users.insert_one({"firstname": first_name, "lastname": last_name, "email": email, "mentormentee": mentormentee, "password": password, "race": race, "religion": religion, "gender": gender, "languages": languages, "academics": academics})
             return render_template("signup.html", step="morespecific", email=email, form=form)
     
     elif step == "confirm":
         if request.method == "POST":
-            mentormentee = request.form.get("menteementor")
-            race = request.form.getlist("race")
-            religion = request.form.getlist("religion")
-            gender = request.form.get("gender")
-            languages = request.form.getlist("languages")
-            academics = request.form.getlist("academics")
-            email = request.form.get("email")
+            mentormentee = form.mentormentee.data
+            race = form.race.data
+            religion = form.religion.data
+            gender = form.gender.data
+            languages = form.languages.data
+            academics = form.academics.data
+            email = form.email.data
             # password = request.form.get("password") # Also have to add the confirm password verification.
             print(f"72 - {email}")
             race = combining(race)
@@ -77,7 +76,7 @@ def signup(step):
     elif step == "finish":
         if request.method == "POST":
             # NEED TO Upload all into DB (try catch, etc)
-            print(f"firstname - {first_name}, lastname - {last_name}, dob - {date_of_birth}, email - {email}, mentormentee - {mentormentee}, race - {race}, religion - {religion}, gender - {gender}, languages - {languages}, academics - {academics}")
+            print(f"firstname - {first_name}, lastname - {last_name}, email - {email}, mentormentee - {mentormentee}, race - {race}, religion - {religion}, gender - {gender}, languages - {languages}, academics - {academics}")
             # users.insert_one({"firstname": first_name, "lastname": last_name, "dob": date_of_birth, "email": email, "mentormentee": mentormentee, "race": race, "religion": religion, "gender": gender, "languages": languages, "academics": academics})
             print("66 - successfully confirmed")
             flash("Account successfully created")
@@ -87,10 +86,14 @@ def signup(step):
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
-    # form = LoginForm()
+    form = LoginForm()
+
+    if current_user.is_authenticated:
+        return redirect("/")
+
     if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("password")
+        email = form.email.data
+        password = form.password.data
         print(f"Login email - {email}")
         print(f"Login password - {password}")
         # for user in users.find():
@@ -100,15 +103,16 @@ def login():
             if user["email"] == email:
                 if user["password"] == password:
                     flash("Successfully signed in!", "success")
-                    loginuser = User(user)
-                    # login_user(user, remember=form.data.remember)
+                    login_user(user, remember=form.data.remember)
                     return redirect("/")
                 else:
                     flash("Incorrect password", "error")
             else:
                 flash("No user with this email.", "error")
+    else:
+        flash("Log In Failed", "error")
 
-    return render_template("login.html")
+    return render_template("login.html", form=form)
 
 @auth.route("/logout/<id>", methods=["GET", "POST"])
 def logout(id):
