@@ -15,7 +15,7 @@ def home():
         return render_template("layout.html", users=all_users)
     
     all_users = users.find()
-    return render_template("layout.html", users=all_users)
+    return render_template("layout.html")
 
 @views.route("/<id>/delete", methods=["GET", "POST"])
 def delete(id):

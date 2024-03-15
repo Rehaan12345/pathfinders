@@ -33,8 +33,12 @@ def create_app():
     @login_manager.user_loader # Source: https://stackoverflow.com/questions/53401996/attributeerror-dict-object-has-no-attribute-is-active-pymongo-and-flask
     def load_user(user_id):
         users = db.users
-        user_json = users.find_one({'_id': ObjectId(user_id)})
-        return User(user_json)
+        try:
+            user_json = users.find_one({'_id': ObjectId(user_id)})
+            return User(user_json)
+        except: print("37 - Failed")
+        # user_json = users.find_one({'_id': ObjectId(user_id)})
+        # return User(user_json)
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")

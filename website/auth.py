@@ -6,6 +6,7 @@ from . import users
 from flask_login import login_user, login_required, logout_user, current_user
 from .forms import SignupForm, LoginForm
 
+
 auth = Blueprint("auth", __name__)
 
 # @auth.route("/user", methods=["GET", "POST"])
@@ -98,19 +99,27 @@ def login():
         print(f"Login password - {password}")
         # for user in users.find():
         #     print(user)      
-        all_users = users.find()
-        for user in all_users:
-            if user["email"] == email:
-                if user["password"] == password:
-                    flash("Successfully signed in!", "success")
-                    login_user(user, remember=form.data.remember)
-                    return redirect("/")
-                else:
-                    flash("Incorrect password", "error")
-            else:
-                flash("No user with this email.", "error")
-    else:
-        flash("Log In Failed", "error")
+        # all_users = users.find()
+        # for user in all_users:
+        #     if user["email"] == email:
+        #         if user["password"] == password:
+        #             flash("Successfully signed in!", "success")
+        #             login_user(user, remember=form.data.remember)
+        #             return redirect("/")
+        #         else:
+        #             flash("Incorrect password", "error")
+        #     else:
+        #         flash("No user with this email.", "error")
+        loginuser_json = users.find_one({'email': form.email.data})
+        # if loginuser_json and bcrypt.check_password_hash(loginuser_json['password'], form.password.data):
+        # Create a custom user and pass it to login_user:
+        #     loginuser = User(loginuser_json)
+        #     login_user(loginuser, remember=form.data.remember)
+        #     return redirect("/")
+        # else:
+        #     flash('Login Unsuccessful. Please check username and password', 'error')
+    # else:
+    #     flash("Log In Failed", "error")
 
     return render_template("login.html", form=form)
 
