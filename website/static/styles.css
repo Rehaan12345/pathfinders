@@ -585,6 +585,14 @@ section{
 }
 
 /********** Main page styling: **********/
+.backgroundimage {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../static/images/homepic.png");
+  background-position: center;
+  background-size: cover;
+}
+
 .maincontainer {
   display: flex;
   border: 1px solid black;
